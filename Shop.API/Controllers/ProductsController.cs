@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Shop.BLL.Interfaces;
+using Shop.BLL.Models;
 
 namespace Shop.API.Controllers
 {
@@ -10,16 +10,41 @@ namespace Shop.API.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        public ProductsController()
-        {
+        private readonly IProductService _productService;
 
+        public ProductsController(IProductService productService)
+        {
+            _productService = productService;
         }
 
-        // GET api/values
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        // POST api/products
+        [HttpPost]
+        public ActionResult Add([FromBody] ProductDTO productDTO)
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                _productService.AddProduct(productDTO);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        // GET api/products
+        [HttpGet]
+        public ActionResult<IEnumerable<ProductDTO>> Get()
+        {
+            try
+            {
+                var products = _productService.GetAllProducts();
+                return (List<ProductDTO>)products;
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         // GET api/values/5
@@ -27,12 +52,6 @@ namespace Shop.API.Controllers
         public ActionResult<string> Get(int id)
         {
             return "value";
-        }
-
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
         }
 
         // PUT api/values/5
