@@ -4,12 +4,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28307.539
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.API", "Shop.API\Shop.API.csproj", "{74513D13-0C1B-4729-925F-FFFF10AB54CD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{785988F9-9EFE-4FB9-842F-5B4EF063A303} = {785988F9-9EFE-4FB9-842F-5B4EF063A303}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.BLL", "Shop.BLL\Shop.BLL.csproj", "{785988F9-9EFE-4FB9-842F-5B4EF063A303}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.DAL", "Shop.DAL\Shop.DAL.csproj", "{95ECFF8A-6E3B-4CA2-9F80-DCFF97009065}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Tests", "Shop.Tests\Shop.Tests.csproj", "{45F6731F-5689-44C6-A5E0-220351834016}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.BLL.Tests", "Shop.Tests\Shop.BLL.Tests.csproj", "{45F6731F-5689-44C6-A5E0-220351834016}"
+	ProjectSection(ProjectDependencies) = postProject
+		{74513D13-0C1B-4729-925F-FFFF10AB54CD} = {74513D13-0C1B-4729-925F-FFFF10AB54CD}
+		{95ECFF8A-6E3B-4CA2-9F80-DCFF97009065} = {95ECFF8A-6E3B-4CA2-9F80-DCFF97009065}
+		{785988F9-9EFE-4FB9-842F-5B4EF063A303} = {785988F9-9EFE-4FB9-842F-5B4EF063A303}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0DA6F0C3-D83F-440D-8A54-9F705659ED49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.DAL.Tests", "Shop.DAL.Tests\Shop.DAL.Tests.csproj", "{723A4EE5-4152-4313-AA6B-CF69EDE5FA63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +45,17 @@ Global
 		{45F6731F-5689-44C6-A5E0-220351834016}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45F6731F-5689-44C6-A5E0-220351834016}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45F6731F-5689-44C6-A5E0-220351834016}.Release|Any CPU.Build.0 = Release|Any CPU
+		{723A4EE5-4152-4313-AA6B-CF69EDE5FA63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{723A4EE5-4152-4313-AA6B-CF69EDE5FA63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{723A4EE5-4152-4313-AA6B-CF69EDE5FA63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{723A4EE5-4152-4313-AA6B-CF69EDE5FA63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{45F6731F-5689-44C6-A5E0-220351834016} = {0DA6F0C3-D83F-440D-8A54-9F705659ED49}
+		{723A4EE5-4152-4313-AA6B-CF69EDE5FA63} = {0DA6F0C3-D83F-440D-8A54-9F705659ED49}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1CF640A9-A8C9-48C0-95AB-87F3E641F79C}
