@@ -23,6 +23,9 @@ namespace Shop.BLL.Models
         public int Quantity { get; set; }
 
         [Required]
-        public string PurchasePrice { get; set; }
+        public decimal Price { get; set; }
+
+        [Required]
+        public CategoryDTO Category { get; set; }
     }
 }

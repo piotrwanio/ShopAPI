@@ -12,6 +12,7 @@ namespace Shop.BLL.Helpers
         public AutoMapperProfile()
         {
             CreateMap<Product, ProductDTO>();
+            CreateMap<Category, CategoryDTO>();
         }
     }
 }

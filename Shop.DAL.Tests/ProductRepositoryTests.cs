@@ -25,7 +25,7 @@ namespace Shop.DAL.Tests
         {
             //arrange
             EFDbContext context = new EFDbContext(_options);
-            ProductRepository repository = new ProductRepository(context);
+            ProductsRepository repository = new ProductsRepository(context);
 
             Product product = new Product
             {
