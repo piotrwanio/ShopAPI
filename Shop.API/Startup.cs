@@ -48,9 +48,8 @@ namespace Shop.API
                     TermsOfService = "None",
                     Contact = new Contact
                     {
-                        Name = "Shayne Boyer",
-                        Email = string.Empty,
-                        Url = "https://twitter.com/spboyer"
+                        Name = "Piotr Wanio",
+                        Email = "piotrwanio@gmail.com",
                     },
                     License = new License
                     {
