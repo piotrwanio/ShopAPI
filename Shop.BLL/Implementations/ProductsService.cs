@@ -77,7 +77,7 @@ namespace Shop.BLL.Implementations
                 .Where(p => p.CategoryId == categoryId);
             List<ProductDTO> productDTOs = new List<ProductDTO>();
 
-            if (products == null)
+            if (products.Count() == 0)
                 throw new ValidationException("There is no products in this category");
 
             foreach(var p in products)

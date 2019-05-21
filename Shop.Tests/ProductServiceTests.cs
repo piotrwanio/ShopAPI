@@ -447,5 +447,115 @@ namespace BLL.Tests
             //act and asserts
             Assert.Throws<ValidationException>(() => { service.DeleteProductById(productDTO.Id); });
         }
+
+        [Test]
+        public void GetProductsByCategory_CorrectCategoryId_GetListOfProducts()
+        {
+            //arrange
+            Mock<IProductsRepository> mockProductRepo = new Mock<IProductsRepository>();
+            Mock<ICategoriesRepository> mockCategoryRepo = new Mock<ICategoriesRepository>();
+            Mock<IMapper> mockMapper = new Mock<IMapper>();
+
+            Category category = new Category
+            {
+                Id = 1,
+                Name = "category"
+            };
+
+
+            Product product1 = new Product
+            {
+                Name = "Testowy",
+                Description = "LoremipsumLoremipsumLoremipsumLoremipsumLoremipsum",
+                Category = category,
+                CategoryId = category.Id
+            };
+            Product product2 = new Product
+            {
+                Name = "Testowy2",
+                Description = "LoremipsumLoremipsumLoremipsumLoremipsumLoremipsum",
+                Category = category,
+                CategoryId = category.Id
+            };
+            ProductDTO productDTO1 = new ProductDTO
+            {
+                Name = "Testowy",
+                Description = "LoremipsumLoremipsumLoremipsumLoremipsumLoremipsum",
+            };
+            ProductDTO productDTO2 = new ProductDTO
+            {
+                Name = "Testowy2",
+                Description = "LoremipsumLoremipsumLoremipsumLoremipsumLoremipsum"
+            };
+
+            List<Product> productsList = new List<Product> { product1, product2 };
+
+            ProductsService service = new ProductsService(mockProductRepo.Object, mockCategoryRepo.Object,
+                mockMapper.Object);
+
+            mockProductRepo.Setup(m => m.GetAllProducts()).Returns(productsList);
+            mockMapper.Setup(m => m.Map<ProductDTO>(product1)).Returns(productDTO1);
+            mockMapper.Setup(m => m.Map<ProductDTO>(product2)).Returns(productDTO2);
+
+            //act
+            var result = service.GetProductsByCategory(1);
+
+            //asserts
+            Assert.AreEqual(2, result.Count);
+        }
+
+        [Test]
+        public void GetProductsByCategory_NotExistingCategoryId_ThrowsValidationException()
+        {
+            //arrange
+            Mock<IProductsRepository> mockProductRepo = new Mock<IProductsRepository>();
+            Mock<ICategoriesRepository> mockCategoryRepo = new Mock<ICategoriesRepository>();
+            Mock<IMapper> mockMapper = new Mock<IMapper>();
+
+            Category category = new Category
+            {
+                Id = 1,
+                Name = "category"
+            };
+
+
+            Product product1 = new Product
+            {
+                Name = "Testowy",
+                Description = "LoremipsumLoremipsumLoremipsumLoremipsumLoremipsum",
+                Category = category,
+                CategoryId = category.Id
+            };
+            Product product2 = new Product
+            {
+                Name = "Testowy2",
+                Description = "LoremipsumLoremipsumLoremipsumLoremipsumLoremipsum",
+                Category = category,
+                CategoryId = category.Id
+            };
+            ProductDTO productDTO1 = new ProductDTO
+            {
+                Name = "Testowy",
+                Description = "LoremipsumLoremipsumLoremipsumLoremipsumLoremipsum",
+            };
+            ProductDTO productDTO2 = new ProductDTO
+            {
+                Name = "Testowy2",
+                Description = "LoremipsumLoremipsumLoremipsumLoremipsumLoremipsum"
+            };
+
+            List<Product> productsList = new List<Product> { product1, product2 };
+
+            ProductsService service = new ProductsService(mockProductRepo.Object, mockCategoryRepo.Object,
+                mockMapper.Object);
+
+            mockProductRepo.Setup(m => m.GetAllProducts()).Returns(productsList);
+            mockMapper.Setup(m => m.Map<ProductDTO>(product1)).Returns(productDTO1);
+            mockMapper.Setup(m => m.Map<ProductDTO>(product2)).Returns(productDTO2);
+
+            //act and asserts
+            Assert.Throws<ValidationException>(() => { service.GetProductsByCategory(10); });
+
+        }
     }
 }

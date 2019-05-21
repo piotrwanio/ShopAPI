@@ -46,7 +46,7 @@ namespace Shop.API.Controllers
             try
             {
                 _productService.AddProduct(productDTO);
-                return Ok();
+                return Created("/api/products/" + productDTO.Id, productDTO);
             }
             catch (ValidationException e)
             {

@@ -29,7 +29,7 @@ namespace Shop.API.Controllers
             try
             {
                 _categoryService.AddCategory(categoryDTO);
-                return Ok();
+                return Created("/api/categories/" + categoryDTO.Id, categoryDTO);
             }
             catch (ValidationException e)
             {
